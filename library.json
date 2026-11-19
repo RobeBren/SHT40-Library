@@ -1,0 +1,7 @@
+{
+    "name": "SHT40-Library",
+    "version": "1.0.0",
+    "description": "C++ driver for the SHT40 temperature and humidity sensor",
+    "frameworks": ["arduino"],
+    "platforms": "*"
+}
