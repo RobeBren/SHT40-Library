@@ -14,8 +14,8 @@
  * ***************************************************************************
  */
 
-#ifndef SHT40_H
-#define SHT40_H
+#ifndef BR_SHT40_H
+#define BR_SHT40_H
 
 #include <Arduino.h>
 #include <array>
