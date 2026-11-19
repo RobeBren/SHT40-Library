@@ -21,7 +21,7 @@
 #include <array>
 
 
-class SHT40 {
+class BR_SHT40 {
     public:
 
         /// I2C interface address
@@ -54,7 +54,7 @@ class SHT40 {
 
         
 
-        SHT40(uint8_t i2c_address = I2C_ADR);
+        BR_SHT40(uint8_t i2c_address = I2C_ADR);
         bool begin();
         std::array<float, 3> getTemperatureHumidity(uint8_t reg);
         // uint32_t getSerialNumber();
