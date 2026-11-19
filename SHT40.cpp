@@ -1,4 +1,4 @@
-#include <SHT40.h>
+#include <BR_SHT40.h>
 #include <Wire.h>
 
 
