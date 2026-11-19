@@ -2,11 +2,11 @@
 #include <Wire.h>
 
 
-SHT40::SHT40(uint8_t i2c_address) {
+BR_SHT40::BR_SHT40(uint8_t i2c_address) {
     _i2c_address = i2c_address;
 }
 
-bool SHT40::begin() {
+bool BR_SHT40::begin() {
     Wire.beginTransmission(_i2c_address);
 
     if (Wire.endTransmission() == 0) {
@@ -17,15 +17,15 @@ bool SHT40::begin() {
 }
 
 
-uint8_t SHT40::calculateCRC(uint8_t msb, uint8_t lsb) {
-    uint8_t crc = SHT40::CRC_INITIALIZATION;
+uint8_t BR_SHT40::calculateCRC(uint8_t msb, uint8_t lsb) {
+    uint8_t crc = BR_SHT40::CRC_INITIALIZATION;
 
     // Process MSB
     crc ^= msb;
 
     for (uint8_t bit = 0; bit < 8; bit++) {
         if (crc & 0x80) {
-            crc = (crc << 1) ^ SHT40::CRC_POLYNOMIAL;
+            crc = (crc << 1) ^ BR_SHT40::CRC_POLYNOMIAL;
         } else {
             crc <<= 1;
         }
@@ -36,19 +36,19 @@ uint8_t SHT40::calculateCRC(uint8_t msb, uint8_t lsb) {
 
     for (uint8_t bit = 0; bit < 8; bit++) {
         if (crc & 0x80) {
-            crc = (crc << 1) ^ SHT40::CRC_POLYNOMIAL;
+            crc = (crc << 1) ^ BR_SHT40::CRC_POLYNOMIAL;
         } else {
             crc <<= 1;
         }
     }
 
     // Final XOR
-    crc ^= SHT40::CRC_FINAL_XOR;
+    crc ^= BR_SHT40::CRC_FINAL_XOR;
 
     return crc;
 }
 
-std::array<float, 3> SHT40::getTemperatureHumidity(uint8_t reg) {
+std::array<float, 3> BR_SHT40::getTemperatureHumidity(uint8_t reg) {
 
     Wire.beginTransmission(_i2c_address);
     Wire.write(reg);
